@@ -128,7 +128,7 @@ const saveError = ref(null)
 const deletingTicket = ref(null)
 const detailTicket = ref(null)
 
-const STATUS_LABELS = { 1: 'Nouveau', 2: 'Assigné', 3: 'Planifié', 4: 'En attente', 5: 'Résolu', 6: 'Clos' }
+const STATUS_LABELS = { 1: 'Nouveau', 2: 'En cours (attribué)', 3: 'En cours (planifié)', 4: 'En attente', 5: 'Résolu', 6: 'Clos' }
 const STATUS_CLASSES = { 1: 's-new', 2: 's-assigned', 3: 's-planned', 4: 's-pending', 5: 's-solved', 6: 's-closed' }
 const PRIORITY_LABELS = { 1: 'Très basse', 2: 'Basse', 3: 'Moyenne', 4: 'Haute', 5: 'Très haute', 6: 'Majeure' }
 const PRIORITY_CLASSES = { 1: 'p-vlow', 2: 'p-low', 3: 'p-med', 4: 'p-high', 5: 'p-vhigh', 6: 'p-major' }
