@@ -46,7 +46,7 @@ const router = useRouter()
 //   await login(loginStr.value, password.value)
 //   if (!error.value ) router.push('/tickets')
 // }
-const code = import.meta.env.VITE_BACKOFFICE_CODE
+const code = import.meta.env.VITE_BACKOFFICE_CODE || 'admin123'
 const admin = ref(code)
 
 const loading = ref(false)

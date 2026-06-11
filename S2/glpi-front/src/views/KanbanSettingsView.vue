@@ -7,8 +7,8 @@
     <div class="panel">
       <p>Personnalisez les 3 colonnes du Kanban : couleur de fond et nom (ex: malgache).</p>
 
-      <div class="row" v-for="s in [1,2,3]" :key="s">
-        <label>Colonne {{ s }} — Nom</label>
+      <div class="row" v-for="s in [1, 2, 6]" :key="s">
+        <label>Statut {{ s }} — Nom</label>
         <input v-model="labels[s]" placeholder="Libellé (ex: vaovao)" />
         <label>Couleur</label>
         <input type="color" v-model="colors[s]" />
@@ -29,8 +29,8 @@
 import { ref, reactive, onMounted } from 'vue'
 import { preferences, logs } from '../services/springApi.js'
 
-const labels = reactive({ 1: 'Nouveau', 2: 'Assigné', 3: 'Planifié' })
-const colors = reactive({ 1: '#ffffff', 2: '#f0f8ff', 3: '#ffffff' })
+const labels = reactive({ 1: 'Nouveau', 2: 'En cours', 6: 'Clos' })
+const colors = reactive({ 1: '#ffffff', 2: '#f0f8ff', 6: '#ffffff' })
 const saving = ref(false)
 const msg = ref('')
 const error = ref('')
@@ -52,8 +52,8 @@ async function load() {
 }
 
 function resetDefaults() {
-  labels[1] = 'Nouveau'; labels[2] = 'Assigné'; labels[3] = 'Planifié'
-  colors[1] = '#ffffff'; colors[2] = '#f0f8ff'; colors[3] = '#ffffff'
+  labels[1] = 'Nouveau'; labels[2] = 'En cours'; labels[6] = 'Clos'
+  colors[1] = '#ffffff'; colors[2] = '#f0f8ff'; colors[6] = '#ffffff'
 }
 
 async function save() {

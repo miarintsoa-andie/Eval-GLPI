@@ -34,7 +34,7 @@
       <div class="kanban">
         <div
           class="column"
-          v-for="s in [1,2,3]"
+          v-for="s in [1, 2, 6]"
           :key="s"
           @dragover.prevent
           @drop="onDrop($event, s)"

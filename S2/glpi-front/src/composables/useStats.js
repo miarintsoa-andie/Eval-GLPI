@@ -48,6 +48,15 @@ export function useStats() {
         return { key, label, total, error }
       })
     )
+//     Ce bloc parcourt chaque type d’asset (ordinateur, imprimante, etc.), lance en parallèle un comptage avec fetchCount, et construit un tableau assetResults avec pour chaque type :
+
+// son identifiant (key),
+
+// son libellé (label),
+
+// le nombre (total),
+
+// et l’état (error).
 
     // Compteur total tickets + par statut
     const [ticketTotal, ...ticketByStatus] = await Promise.all([
@@ -64,6 +73,7 @@ export function useStats() {
     stats.value = {
       assets: assetResults,
       assetTotal: assetResults.reduce((sum, a) => sum + a.total, 0),
+      //  additionne tous les total des assets./  ajoute le champ total de chaque élément.,valeur initial
       tickets: ticketByStatus,
       ticketTotal: ticketTotal.total,
     }
