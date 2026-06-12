@@ -2,9 +2,25 @@ import { ref } from 'vue'
 import { glpiApi } from '../services/glpiApi.js'
 import { imports as springImports } from '../services/springApi.js'
 
-const TYPE_MAP    = { 'Incident': 1, 'Demande': 2, 'Request': 2 }
-const STATUS_MAP  = { 'New': 1, 'Assigned': 2, 'Planning': 3, 'Pending': 4, 'Solved': 5, 'Closed': 6 }
-const PRIORITY_MAP = { 'Very Low': 1, 'Low': 2, 'Medium': 3, 'High': 4, 'Very High': 5, 'Major': 6 }
+const TYPE_MAP    = { 'incident': 1, 'demande': 2, 'request': 2 }
+const STATUS_MAP  = {
+  'new': 1,
+  'nouveau': 1,
+  'assigned': 2,
+  'assigné': 2,
+  'in progress': 2,
+  'en cours': 2,
+  'planning': 3,
+  'planifié': 3,
+  'pending': 4,
+  'en attente': 4,
+  'solved': 5,
+  'résolu': 5,
+  'closed': 6,
+  'clos': 6,
+  'close': 6
+}
+const PRIORITY_MAP = { 'very low': 1, 'low': 2, 'medium': 3, 'high': 4, 'very high': 5, 'major': 6 }
 
 function parseGlpiDate(date, heure) {
   if (!date) return undefined
@@ -54,9 +70,9 @@ export function useFeuille2Import() {
         const input = {
           name:     row['Titre'],
           content:  row['Description'],
-          type:     TYPE_MAP[row['Type']] ?? 1,
-          status:   STATUS_MAP[row['Status']] ?? 1,
-          priority: PRIORITY_MAP[row['Priority']] ?? 3,
+          type:     TYPE_MAP[(row['Type'] || '').toLowerCase()] ?? 1,
+          status:   STATUS_MAP[(row['Status'] || '').toLowerCase()] ?? 1,
+          priority: PRIORITY_MAP[(row['Priority'] || '').toLowerCase()] ?? 3,
           date:     parseGlpiDate(row['Date'], row['Heure']),
         }
 

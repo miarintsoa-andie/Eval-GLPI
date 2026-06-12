@@ -5,16 +5,16 @@ import { imports as springImports } from '../services/springApi.js'
 import { lookupOrCreate, lookupUser } from './useGlpiLookup.js'
 
 const TYPE_MAP = {
-    'Incident': 1, 'Demande': 2,   // pour tickets
-    'Computer': 'Computer', 'Monitor': 'Monitor',
-    'NetworkEquipment': 'NetworkEquipment',
-    'Printer': 'Printer', 'Phone': 'Phone',
+    'incident': 1, 'demande': 2, 'ticket': 1,
+    'computer': 'Computer', 'monitor': 'Monitor',
+    'networkequipment': 'NetworkEquipment',
+    'printer': 'Printer', 'phone': 'Phone',
 }
 
 const MODEL_FIELD = {
-    Computer: 'computermodels_id', Monitor: 'monitormodels_id',
-    NetworkEquipment: 'networkequipmentmodels_id',
-    Printer: 'printermodels_id', Phone: 'phonemodels_id',
+    'Computer': 'computermodels_id', 'Monitor': 'monitormodels_id',
+    'NetworkEquipment': 'networkequipmentmodels_id',
+    'Printer': 'printermodels_id', 'Phone': 'phonemodels_id',
 }
 
 export function useFeuille1Import() {
@@ -55,7 +55,8 @@ export function useFeuille1Import() {
 
         for (let i = 0; i < rows.length; i++) {
             const row = rows[i]
-            const itemtype = row['Item_Type']?.trim()
+            const rawItemType = (row['Item_Type'] || '').trim().toLowerCase()
+            const itemtype = TYPE_MAP[rawItemType] || 'Computer' // Fallback safe
 
             if (!itemtype || !row['Name']) {
                 logs.value.push({ status: 'error', message: `Ligne ${i + 2} : Name ou Item_Type manquant` })

@@ -8,6 +8,10 @@
         <option value="">— Choisir —</option>
         <option value="Ticket">Tickets</option>
         <option value="Computer">Ordinateurs</option>
+        <option value="Monitor">Moniteurs</option>
+        <option value="NetworkEquipment">Équipements Réseau</option>
+        <option value="Printer">Imprimantes</option>
+        <option value="Phone">Téléphones</option>
         <option value="Document">Documents</option>
         <option value="Software">Logiciels</option>
         <option value="Contract">Contrats</option>
